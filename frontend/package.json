@@ -1,0 +1,29 @@
+{
+  "name": "pdf-qa-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Frontend for PDF Q&A API by Uttkarsh Malviya (Menma420)",
+  "author": "Uttkarsh Malviya <Menma420>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Menma420/pdf-qa-api"
+  },
+  "homepage": "https://pdf-qa-api.vercel.app/",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "typescript": "*"
+  }
+}
