@@ -1,25 +1,28 @@
-# ✅ Use a slimmed-down PyTorch image (CPU only, no CUDA)
 FROM python:3.10-slim
 
-
-# Set working directory
 WORKDIR /app
 
-# Install required system packages and clean up
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends git && \
-    rm -rf /var/lib/apt/lists/*
+# Install build essentials and git (needed for faiss and transformers)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
+# Install pip + CPU-only PyTorch
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu && \
+    echo "✅ Installed PyTorch CPU"
+
+# Add requirements & install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt && \
+    echo "✅ Installed Python deps" && \
+    apt-get purge -y gcc && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
 # Copy rest of the app
 COPY . .
 
-# Expose the FastAPI port
 EXPOSE 8000
 
-# Run the FastAPI app
 CMD ["uvicorn", "AI_Assistant:app", "--host", "0.0.0.0", "--port", "8000"]

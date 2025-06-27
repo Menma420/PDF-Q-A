@@ -57,10 +57,18 @@ def log_email(email):
     except Exception as e:
         return False
 
+# Global cache for the embedding model
+_embedding_model = None
+
+def get_embedding_model():
+    global _embedding_model
+    if _embedding_model is None:
+        _embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    return _embedding_model
+
 class RAGApplication:
     def __init__(self):
-        # Use free embeddings from HuggingFace
-        self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        # Do not load embeddings here
         # Use OpenRouter for LLM responses
         model_name = os.getenv("OPENROUTER_MODEL", "mistralai/mistral-7b-instruct")  # Default to Mistral if not set
         self.llm = ChatOpenAI(
@@ -93,10 +101,12 @@ class RAGApplication:
             )
             texts = text_splitter.split_documents(documents)
             
+            # Lazily load and cache the embedding model
+            embeddings = get_embedding_model()
             # Create vector store
             self.vector_store = FAISS.from_documents(
                 documents=texts,
-                embedding=self.embeddings
+                embedding=embeddings
             )
             
             # Clean up temporary file

@@ -1,16 +1,14 @@
-   fastapi
-   uvicorn
-   python-multipart
-   langchain
-   langchain-community
-   langchain-openai
-   python-dotenv
-   pymongo
-   sentence-transformers
-   pypdf
-   faiss-cpu
-   scikit-learn
-   scipy
-   joblib
-   typing-extensions
-   langchain-huggingface
+fastapi
+uvicorn
+python-multipart
+langchain
+langchain-community
+langchain-openai
+python-dotenv
+pymongo
+pypdf
+scikit-learn
+joblib
+typing-extensions
+faiss-cpu
+sentence-transformers
