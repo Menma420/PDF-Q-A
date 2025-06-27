@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.egg-info/
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+
+# Build & logs
+*.log
+*.tsbuildinfo
+
+# Env & secrets
+.env.*
+
+# Misc
+.DS_Store
+*.pem
+.vscode/
+.vercel/
+
+# Project-specific
+codevvb
+RAG_APP_Architecture.mermaid
+RAG_APP_Flow.mermaid
+
+# Next.js environment variable
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000 

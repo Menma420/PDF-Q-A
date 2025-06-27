@@ -1,4 +1,4 @@
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -13,8 +13,10 @@ from pymongo import MongoClient
 
 # Load environment variables from .env file
 load_dotenv()
-# Set OpenRouter API key and base URL for OpenAI-compatible clients
-os.environ["OPENAI_API_KEY"] = os.getenv("API_KEY")
+api_key = os.getenv("API_KEY")
+if not api_key:
+    raise RuntimeError("API_KEY is not set in the environment or .env file.")
+os.environ["OPENAI_API_KEY"] = api_key
 os.environ["OPENAI_API_BASE"] = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 
 # MongoDB setup - Using environment variables
@@ -60,8 +62,9 @@ class RAGApplication:
         # Use free embeddings from HuggingFace
         self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         # Use OpenRouter for LLM responses
+        model_name = os.getenv("OPENROUTER_MODEL", "mistralai/mistral-7b-instruct")  # Default to Mistral if not set
         self.llm = ChatOpenAI(
-            model_name="openai/gpt-3.5-turbo",
+            model_name=model_name,
             temperature=0,
             openai_api_base=os.getenv("OPENAI_API_BASE", "https://openrouter.ai/api/v1"),
             openai_api_key=os.getenv("OPENROUTER_API_KEY")
