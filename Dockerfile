@@ -1,5 +1,7 @@
 # ✅ Use a slimmed-down PyTorch image (CPU only, no CUDA)
-FROM hogepodge/notebook-pytorch:2024-04-15
+#FROM hogepodge/notebook-pytorch:2024-04-15
+FROM quay.io/jupyter/pytorch-notebook:ubuntu-22.04-python-3.10.8
+
 
 
 # Set working directory
