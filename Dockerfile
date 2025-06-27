@@ -1,5 +1,6 @@
 # ✅ Use a slimmed-down PyTorch image (CPU only, no CUDA)
-FROM cnstark/pytorch:2.2.2-py3.10.15-cpu
+FROM hogepodge/notebook-pytorch:latest
+
 # Set working directory
 WORKDIR /app
 
