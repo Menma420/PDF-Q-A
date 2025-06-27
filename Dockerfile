@@ -1,5 +1,6 @@
 # ✅ Use a slimmed-down PyTorch image (CPU only, no CUDA)
-FROM hogepodge/notebook-pytorch:latest
+FROM hogepodge/notebook-pytorch:2024-04-15
+
 
 # Set working directory
 WORKDIR /app
