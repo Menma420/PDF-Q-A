@@ -1,4 +1,5 @@
-# Python
+# =========================
+# 🔒 Python build junk
 __pycache__/
 *.pyc
 *.pyo
@@ -7,30 +8,23 @@ __pycache__/
 *.sqlite3
 *.egg-info/
 
-# Node
+# =========================
+# ⚛️ Node / Next.js frontend (do not include in Docker image)
 node_modules/
-frontend/node_modules/
-frontend/.next/
-frontend/out/
-frontend/build/
-
-# Build & logs
-*.log
+frontend/
 *.tsbuildinfo
 
-# Env & secrets
-.env.*
-
-# Misc
+# =========================
+# 🛠️ Build logs, VCS, OS cruft
+*.log
 .DS_Store
-*.pem
 .vscode/
 .vercel/
+.env.*
+*.pem
 
-# Project-specific
+# =========================
+# 🧠 Project-specific
 codevvb
 RAG_APP_Architecture.mermaid
 RAG_APP_Flow.mermaid
-
-# Next.js environment variable
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000 
