@@ -12,3 +12,4 @@ joblib
 typing-extensions
 faiss-cpu
 sentence-transformers
+langchain-huggingface
