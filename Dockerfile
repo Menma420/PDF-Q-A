@@ -1,6 +1,5 @@
 # ✅ Use a slimmed-down PyTorch image (CPU only, no CUDA)
-FROM pytorch/pytorch:2.1.0-cpu
-
+FROM cnstark/pytorch:2.2.2-py3.10.15-cpu
 # Set working directory
 WORKDIR /app
 
